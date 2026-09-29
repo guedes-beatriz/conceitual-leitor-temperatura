@@ -1,0 +1,77 @@
+% ============================================================================
+% capa.tex
+% ----------------------------------------------------------------------------
+% Gera a CAPA do documento (primeira página, sem numeração e sem cabeçalho/
+% rodapé padrão).
+%
+% Usa os dados definidos em:
+%   - config.tex  -> caminhos e tamanhos dos logos, cidade
+%   - edicao.tex  -> título, subtítulo, ano
+%
+% Você normalmente NÃO precisa editar este arquivo, apenas os dados que ele
+% utiliza (em config.tex e edicao.tex).
+% ============================================================================
+
+\begin{titlepage}
+    \thispagestyle{empty}   % capa não tem cabeçalho/rodapé nem numeração
+    \centering              % centraliza todo o conteúdo da capa
+
+    % -- Logo principal da empresa --------------------------------------------
+    % Se o arquivo definido em \logoCapaArquivo (config.tex) não existir,
+    % mostra uma caixa com o texto "(logo da empresa aqui)" no lugar —
+    % assim o modelo continua compilando mesmo sem as imagens finais.
+    \IfFileExists{\logoCapaArquivo}{
+        \includegraphics[width=\larguraLogoCapa]{\logoCapaArquivo}
+    }{
+        \fbox{\rule{0pt}{2cm}\hspace{4cm}\small (logo da empresa aqui)\hspace{4cm}}
+    }
+
+    \vspace{0.15\textheight}
+
+    % -- Título e subtítulo do documento ---------------------------------------
+    % Vêm de \tituloDocumento e \subtituloDocumento, definidos em edicao.tex.
+    {\fontsize{14}{17}\selectfont\bfseries \MakeUppercase{\tituloDocumento}\par}
+
+    \vspace{0.5cm}
+
+    {\fontsize{12}{15}\selectfont \subtituloDocumento\par}
+
+    \vfill
+
+    % -- Logos de parceiros/apoiadores -----------------------------------------
+    % Exibidos lado a lado, com opacidade reduzida (\opacidadeLogosParceiras).
+    % Cada um também tem um "substituto" em caixa de texto, caso a imagem
+    % correspondente não exista no projeto.
+    \noindent
+    \makebox[\textwidth]{
+        \hfill
+        \IfFileExists{\logoParceiraUmArquivo}{
+            \transparent{\opacidadeLogosParceiras}\includegraphics[height=\alturaLogosParceiras]{\logoParceiraUmArquivo}\transparent{1}
+        }{
+            \fbox{\rule{0pt}{\alturaLogosParceiras}\hspace{2cm}\small(Logo UnB)\hspace{2cm}}
+        }
+        \hfill
+        \IfFileExists{\logoParceiraDoisArquivo}{
+            \transparent{\opacidadeLogosParceiras}\includegraphics[height=\alturaLogosParceiras]{\logoParceiraDoisArquivo}\transparent{1}
+        }{
+            \fbox{\rule{0pt}{\alturaLogosParceiras}\hspace{2cm}\small(Logo Concentro)\hspace{2cm}}
+        }
+        \hfill
+        \IfFileExists{\logoParceiraTresArquivo}{
+            \transparent{\opacidadeLogosParceiras}\includegraphics[height=\alturaLogosParceiras]{\logoParceiraTresArquivo}\transparent{1}
+        }{
+            \fbox{\rule{0pt}{\alturaLogosParceiras}\hspace{2cm}\small(Logo Brasil Júnior)\hspace{2cm}}
+        }
+        \hfill
+    }
+
+    \vspace{3cm}
+
+    % -- Cidade e ano -----------------------------------------------------------
+    {\fontsize{12}{15}\selectfont \cidadeDocumento{}, \anoDocumento\par}
+
+\end{titlepage}
+
+% Reinicia a contagem de páginas: a capa não é contada, então a página
+% seguinte (folha de rosto) volta a ser considerada "página 1".
+\setcounter{page}{1}

@@ -1,0 +1,104 @@
+% ============================================================================
+% cabecalho-rodape.tex
+% ----------------------------------------------------------------------------
+% Define os ESTILOS DE PÁGINA (cabeçalho e rodapé) usados no documento,
+% usando o pacote "fancyhdr" (carregado em includes.tex).
+%
+% Este arquivo cria dois estilos de página:
+%   - "corpo"   -> usado nas páginas normais de conteúdo do relatório
+%   - "sumario" -> usado especificamente na página do sumário (índice)
+%
+% Você normalmente NÃO precisa editar este arquivo. As opções de exibição
+% (mostrar CNPJ, posição da numeração) são configuradas em "edicao.tex"
+% através dos comandos \NumeracaoRodapetrue/false e \CNPJnoRodapetrue/false.
+% ============================================================================
+
+% -- Linhas coloridas do cabeçalho e do rodapé --------------------------------
+% Usam a cor "verde-ej" definida em config.tex.
+\newcommand{\linhaCabecalhoColorida}{{\color{verde-ej}\hrule width\headwidth height 1.5pt}}
+\newcommand{\linhaRodapeColorida}{{\color{verde-ej}\hrule width\headwidth height 1.5pt}}
+
+% -- Flags (chaves liga/desliga) ----------------------------------------------
+% Essas flags são definidas aqui, mas seu VALOR (true/false) é escolhido em
+% edicao.tex, de acordo com o comportamento desejado para cada documento.
+\newif\ifCNPJnoRodape       % controla se o CNPJ aparece no rodapé
+\newif\ifNumeracaoRodape    % controla se a numeração de página fica no rodapé ou no cabeçalho
+
+% -- Numeração de página -------------------------------------------------------
+% Dependendo da flag \NumeracaoRodape, coloca o número da página no
+% cabeçalho (canto superior direito) ou no rodapé (canto inferior direito).
+\newcommand{\numeracaoPagina}{
+    \ifNumeracaoRodape
+        \fancyhead[R]{}
+        \fancyfoot[R]{\fontsize{10}{12}\selectfont \raisebox{18pt}[0pt][0pt]{\thepage}}
+    \else
+        \fancyhead[R]{\fontsize{10}{12}\selectfont \thepage}
+        \fancyfoot[R]{}
+    \fi
+}
+
+% -- Texto central do rodapé ---------------------------------------------------
+% Monta a linha de informações institucionais que aparece no centro do
+% rodapé de cada página do corpo do documento.
+% Se \CNPJnoRodape estiver ativa, inclui a razão social e o CNPJ da empresa;
+% caso contrário, mostra apenas razão social e endereço.
+\newcommand{\rodapeCentro}{
+    \ifCNPJnoRodape
+        \color{gray}\fontsize{7.5}{10}\selectfont
+        \razaoSocialEmpresa\ \separadorRodape\ CNPJ: \cnpjEmpresa\ \\ \empresaEndereco \separadorRodape\ \emailEmpresa\ \separadorRodape\ \telefoneEmpresa\ \\ \siteEmpresa
+    \else
+        \color{gray}\fontsize{7.5}{10}\selectfont
+        \razaoSocialEmpresa\ \separadorRodape\ \empresaEndereco \\ \emailEmpresa\ \separadorRodape\ \telefoneEmpresa\ \separadorRodape\ \siteEmpresa
+    \fi
+}
+
+% -- Estilo de página "corpo" ---------------------------------------------------
+% Usado em todas as páginas normais de conteúdo (ativado em main.tex com
+% \pagestyle{corpo} logo após o sumário).
+\fancypagestyle{corpo}{
+    \fancyhf{}  % limpa qualquer configuração de cabeçalho/rodapé anterior
+
+    % Linhas horizontais coloridas acima do cabeçalho e abaixo do rodapé
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\footrulewidth}{1pt}
+    \renewcommand{\headrule}{\linhaCabecalhoColorida}
+    \renewcommand{\footrule}{\linhaRodapeColorida}
+
+    % Logo no canto superior esquerdo do cabeçalho.
+    % Se o arquivo de logo não existir, mostra o texto "(logo)" no lugar
+    % (útil para testar o modelo antes de inserir as imagens reais).
+    \fancyhead[L]{
+        \IfFileExists{\logoCabecalhoArquivo}{
+            \includegraphics[height=\alturaLogoCabecalho]{\logoCabecalhoArquivo}
+        }{
+            \small(logo)
+        }
+    }
+
+    \numeracaoPagina  % posiciona a numeração conforme a flag definida em edicao.tex
+
+    \fancyfoot[C]{\rodapeCentro}  % texto institucional no centro do rodapé
+}
+
+% -- Estilo de página "sumario" --------------------------------------------------
+% Usado apenas na página do sumário/índice (\thispagestyle{sumario} em
+% sumario.tex). É parecido com "corpo", mas sem numeração de página.
+\fancypagestyle{sumario}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\footrulewidth}{1pt}
+    \renewcommand{\headrule}{\linhaCabecalhoColorida}
+    \renewcommand{\footrule}{\linhaRodapeColorida}
+
+    \fancyhead[L]{
+        \IfFileExists{\logoCabecalhoArquivo}{
+            \includegraphics[height=\alturaLogoCabecalho]{\logoCabecalhoArquivo}
+        }{
+            \small(logo)
+        }
+    }
+    \fancyhead[R]{}  % sem numeração no cabeçalho da página do sumário
+    \fancyfoot[R]{}  % sem numeração no rodapé da página do sumário
+
+    \fancyfoot[C]{\rodapeCentro}
+}

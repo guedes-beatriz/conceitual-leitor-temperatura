@@ -1,0 +1,57 @@
+% ============================================================================
+% config.tex
+% ----------------------------------------------------------------------------
+% Este arquivo concentra as VARIÁVEIS DE CONFIGURAÇÃO VISUAL e os DADOS FIXOS
+% da empresa/entidade que aparecem em todo o documento (capa, cabeçalho,
+% rodapé, folha de rosto etc.).
+%
+% IMPORTANTE: este é o principal arquivo que você deve editar quando for
+% adaptar o modelo para OUTRA empresa/marca (cores, logos, dados de contato).
+% Os dados que mudam a cada documento específico (título, cliente, projeto)
+% ficam em "edicao.tex", não aqui.
+% ============================================================================
+
+% -- Cor institucional -------------------------------------------------------
+% Define a cor "verde-ej" usada nas linhas do cabeçalho/rodapé.
+% Troque os valores RGB para adaptar à cor da sua empresa.
+\definecolor{verde-ej}{RGB}{41, 128, 0}
+
+% -- Caminhos dos arquivos de logo -------------------------------------------
+% Devem apontar para arquivos de imagem existentes dentro do projeto.
+% Se o arquivo não existir, o modelo mostra automaticamente um texto
+% "(logo)" no lugar (ver uso de \IfFileExists em capa.tex e cabecalho-rodape.tex).
+\newcommand{\logoCapaArquivo}{imag/logos/EletronLogo.jpg}                 % logo grande da capa
+\newcommand{\logoCabecalhoArquivo}{imag/logos/EletronLogo_Horizontal.jpg} % logo pequena do cabeçalho
+
+% -- Tamanhos dos logos -------------------------------------------------------
+\newcommand{\larguraLogoCapa}{11cm}       % largura do logo na capa
+\newcommand{\alturaLogoCabecalho}{1cm}  % altura do logo no cabeçalho
+
+% -- Logos de parceiros/apoiadores (aparecem na capa, rodapé da página inicial)
+\newcommand{\logoParceiraUmArquivo}{imag/logos/Logo_UnB.png}
+\newcommand{\logoParceiraDoisArquivo}{imag/logos/Logo_Brasil_Junior.png}
+\newcommand{\logoParceiraTresArquivo}{imag/logos/Logo_Concentro.png}
+
+\newcommand{\alturaLogosParceiras}{1.5cm}     % altura padrão dos logos de parceiros
+\newcommand{\opacidadeLogosParceiras}{0.75}    % opacidade (0 = invisível, 1 = opaco)
+
+% -- Local e data -------------------------------------------------------------
+\newcommand{\cidadeDocumento}{Brasília}  % cidade exibida na capa
+\newcommand{\anoDocumento}{\the\year}    % ano atual, obtido automaticamente do sistema
+
+% -- Dados fixos da empresa/entidade emissora ---------------------------------
+% Usados no rodapé de todas as páginas do corpo do documento.
+\newcommand{\razaoSocialEmpresa}{ELETRONJUN EMPRESA JÚNIOR DE ENGENHARIA ELETRÔNICA}
+\newcommand{\cnpjEmpresa}{27.420.752/0001-68}
+\newcommand{\empresaEndereco}{AE de Indústria Projeção A – UnB - Gama/DF - CEP: 72.444-240}
+\newcommand{\telefoneEmpresa}{(61) 97402-7117}
+\newcommand{\siteEmpresa}{www.eletronjun.com.br}
+
+% Símbolo usado para separar os itens do rodapé (ex.: "Endereço | Telefone | Site")
+\newcommand{\separadorRodape}{ \textbar\ }
+
+% Nome completo da entidade executora do projeto (aparece na folha de rosto)
+\newcommand{\entidadeExecutora}{EletronJun Empresa Júnior de Engenharia Eletrônica}
+
+% Data de emissão: por padrão usa a data atual do sistema (\today).
+\newcommand{\dataEmissaoDocumento}{\today}

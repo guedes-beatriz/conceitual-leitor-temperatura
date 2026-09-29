@@ -1,0 +1,116 @@
+% ====================================================================
+% PREÂMBULO UNIVERSAL LATEX (TEMPLATE DE INCLUDES SEGURO E COMPLETO)
+% ====================================================================
+% Como usar: Salve este arquivo como 'includes.tex' no mesmo diretório
+% do seu documento principal e adicione \input{includes} antes de
+% \begin{document}.
+% ====================================================================
+
+% --- 0. COMPILAÇÃO E FONTE ---
+\usepackage[T1]{fontenc}                    % Codificação de fonte necessária para o pdfLaTeX
+\usepackage[utf8]{inputenc}                 % Garante o suporte a acentuação nativa UTF-8
+\usepackage{helvet}                         % Carrega a família Helvetica (equivalente visual ao Arial)
+\renewcommand{\familydefault}{\sfdefault}   % Define a fonte sem serifa (Helvetica) como padrão do documento
+
+% --- 1. IDIOMA E AJUSTES TIPOGRÁFICOS ---
+\usepackage[brazil]{babel}          % Tradução de termos padrão (Figuras, Tabelas, Sumário)
+\usepackage{microtype}              % Melhorias tipográficas estruturais (ajuste de espaçamento)
+
+% --- 2. MATEMÁTICA AVANÇADA ---
+\usepackage{amsmath}                    % Comandos matemáticos básicos da AMS
+\usepackage{amsfonts}                   % Fontes matemáticas adicionais
+\usepackage{amssymb}                    % Símbolos matemáticos diversos
+\usepackage{mathtools}                  % Extensões e correções para o amsmath
+\usepackage{bm}                         % Negrito para símbolos matemáticos (vetores, matrizes)
+\usepackage{siunitx}                    % Formatação padronizada de unidades do SI (crucial para Engenharia)
+\sisetup{output-decimal-marker = {,}}   % Configura a vírgula como separador decimal para PT-BR/PT-PT
+
+% --- 3. LAYOUT, PÁGINA E ESPAÇAMENTO ---
+\usepackage{geometry}       % Ajuste flexível das margens da página
+\geometry{
+    a4paper,
+    top=30mm,
+    bottom=20mm,
+    left=30mm,
+    right=20mm,
+    % includehead,
+    % includefoot,
+    headheight=1.4cm,
+    headsep=0.4cm,
+    % headsep=0.6cm,
+    footskip=1cm
+    % footskip=1.4cm
+}
+
+\usepackage{fancyhdr}               % Customização avançada de cabeçalhos e rodapés
+\usepackage{lastpage}               % Permite referenciar o número da última página (ex: "2 de 5")
+\usepackage{setspace}               % Controle do espaçamento entre linhas (\onehalfspacing, etc.)
+\usepackage{multicol}               % Suporte para layouts de múltiplas colunas na mesma página
+\usepackage{indentfirst}            % Garante que o primeiro parágrafo de cada seção seja indentado
+
+% --- 4. ELEMENTOS GRÁFICOS E CORES ---
+\usepackage{graphicx}               % Inclusão de imagens e gráficos externos
+\usepackage{transparent}            % Permite definir opacidade de imagens (ex.: logos com 70% de opacidade)
+\usepackage{xcolor}                 % Suporte avançado e paletes de cores customizadas
+\usepackage{tikz}                   % Ferramenta poderosa para criação de diagramas nativos
+\usetikzlibrary{calc}               % Permite aritmética de coordenadas (usada na faixa do cabeçalho)
+\usepackage{pgfplots}               % Geração de gráficos matemáticos de alta precisão
+\pgfplotsset{compat=1.18}           % Garante compatibilidade do pgfplots
+
+% --- 5. TABELAS PROFISSIONAIS ---
+\usepackage{booktabs}               % Linhas de tabela padrão publicação (\toprule, \midrule, \bottomrule)
+\usepackage{array}                  % Extensões para propriedades das colunas em tabelas
+\usepackage{colortbl}               % Permite colorir linhas/colunas/células de tabelas (\rowcolor, \cellcolor)
+\usepackage{multirow}               % Permite mesclar linhas em tabelas
+\usepackage{tabularx}               % Tabelas com largura total fixa e colunas auto-ajustáveis (X)
+\usepackage{longtable}              % Suporte para tabelas que quebram ao longo de múltiplas páginas
+
+% --- 6. FIGURAS, LEGENDAS E FLUTUANTES ---
+\usepackage{float}                  % Controle estrito de posicionamento (modificador [H])
+\usepackage{caption}                % Customização estética das legendas de figuras e tabelas
+\usepackage{subcaption}             % Criação de subfiguras e sub-legendas organizadas
+
+% Legendas de figuras/tabelas usam o tamanho "menor" do padrão (Arial 10)
+\DeclareCaptionFont{arialdez}{\fontsize{10}{12}\selectfont}
+\captionsetup{font=arialdez, labelfont={arialdez,bf}}
+
+% --- 7. LISTAS E ENUMERAÇÕES ---
+\usepackage{enumitem}               % Customização total de listas (itemize, enumerate, description)
+
+% --- 8. CÓDIGO-FONTE E CAIXAS DE DESTAQUE ---
+\usepackage{listings}               % Inclusão e estilização de blocos de código-fonte
+\usepackage{tcolorbox}              % Criação de caixas de texto coloridas e estilizadas de alta qualidade
+\tcbuselibrary{skins,breakable}     % Permite caixas que quebram páginas e estilos complexos
+
+% --- 9. TÍTULOS E SÍMBOLOS DIVERSOS ---
+\usepackage{titlesec}               % Customização visual de \section, \subsection etc.
+\usepackage{pifont}                 % Símbolos diversos (ex: \ding{51} para marcações de check)
+
+% --- 10. REFERÊNCIAS E HIPERLINKS (Devem ser carregados por último) ---
+\usepackage{url}                    % Formatação correta de URLs
+\usepackage{hyperref}               % Transforma referências e sumários em links clicáveis interativos
+\hypersetup{
+    colorlinks=true,                % True para links coloridos, False para caixas coloridas
+    linkcolor=black,                % Cor dos links internos (equações, seções)
+    citecolor=black,                % Cor das citações bibliográficas
+    urlcolor=black                  % Cor de links externos da internet
+}
+\usepackage{cleveref}               % Referências cruzadas inteligentes (escreve "Figura 1" automaticamente)
+
+% Configuração de tradução do cleveref para português (garantia adicional)
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
+\crefname{table}{tabela}{tabelas}
+\Crefname{table}{Tabela}{Tabelas}
+\crefname{equation}{equação}{equações}
+\Crefname{equation}{Equação}{Equações}
+
+% --------------------------------------------------------------
+% Aviso "Token not allowed in a PDF string (Unicode): removing
+% `subscript'" do hyperref: aparece sempre que um campo de formulário
+% (\TextField/\CheckBox, usados em campos-formulario.tex) é criado
+% dentro de uma macro — é um comportamento interno conhecido do
+% hyperref com AcroForm, inofensivo (não afeta o PDF gerado). A linha
+% abaixo apenas filtra esse aviso específico da saída do compilador.
+\usepackage{silence}
+\WarningFilter{hyperref}{Token not allowed in a PDF string}

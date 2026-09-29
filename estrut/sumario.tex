@@ -1,0 +1,16 @@
+% ============================================================================
+% sumario.tex
+% ----------------------------------------------------------------------------
+% Gera a página do SUMÁRIO do documento, listando automaticamente
+% as seções e subseções criadas com \section, \subsection etc. nos arquivos
+% de conteúdo (pasta "secoes/").
+%
+% Você normalmente NÃO precisa editar este arquivo.
+% ============================================================================
+
+\pagestyle{sumario}    % estilo "sumario" (sem numeração) para toda a extensão do sumário
+
+\tableofcontents  % gera automaticamente o sumário com base nas seções do documento
+\clearpage        % começa o conteúdo principal em uma nova página
+
+\pagestyle{corpo} % a partir daqui (conteúdo real do documento), volta ao estilo padrão

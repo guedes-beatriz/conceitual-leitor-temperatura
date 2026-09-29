@@ -1,0 +1,64 @@
+% ============================================================================
+% main.tex
+% ----------------------------------------------------------------------------
+% ESTE É O ARQUIVO PRINCIPAL DO MODELO. É ELE QUE VOCÊ DEVE COMPILAR.
+%
+% Ele apenas ORGANIZA a ordem em que as partes do documento são montadas,
+% importando (\input) os demais arquivos .tex do projeto. A lógica e o
+% conteúdo de cada parte ficam nos respectivos arquivos.
+%
+% ESTRUTURA DE PASTAS ESPERADA (relativa a este arquivo):
+%   main.tex
+%   edicao.tex                  <- dados de cada edição do documento
+%   estrut/
+%       includes.tex             <- pacotes LaTeX usados no modelo
+%       config.tex                <- dados fixos da empresa e cores
+%       cabecalho-rodape.tex       <- estilos de cabeçalho/rodapé
+%       campos-formulario.tex      <- comandos de campos de formulário PDF
+%       capa.tex                   <- layout da capa
+%       folha-rosto.tex            <- layout da folha de rosto
+%       sumario.tex                <- layout do sumário
+%   secoes/
+%       exemplo.tex                <- conteúdo de exemplo (texto comum)
+%       exemplo-formulario.tex     <- conteúdo de exemplo (com formulário)
+%   imag/logos/                  <- imagens dos logos usados na capa/cabeçalho
+%
+% VEJA O "MANUAL_DE_USO.md" PARA INSTRUÇÕES COMPLETAS DE COMO USAR ESTE MODELO.
+% ============================================================================
+
+\documentclass[12pt,a4paper]{article}
+
+% -- Importação dos módulos do modelo ------------------------------------------
+\input{estrut/includes.tex}            % pacotes LaTeX necessários (fancyhdr, hyperref, etc.)
+\input{estrut/config.tex}              % dados fixos da empresa, cores e caminhos de logo
+\input{estrut/cabecalho-rodape.tex}    % define os estilos de página "corpo" e "sumario"
+\input{edicao.tex}                     % dados específicos desta edição do documento (EDITE AQUI)
+\input{estrut/campos-formulario.tex}   % comandos para campos de formulário PDF
+
+\setstretch{1.15}  % espaçamento entre linhas do documento todo
+
+% Comando auxiliar para texto em fonte menor (10pt), disponível em qualquer
+% seção de conteúdo: \pequeno{texto em fonte pequena}
+\newcommand{\pequeno}[1]{{\fontsize{10}{12}\selectfont #1}}
+
+\begin{document}
+
+% -- Páginas iniciais (sem numeração de página) --------------------------------
+\input{estrut/capa.tex}          % capa
+\input{estrut/folha-rosto.tex}   % folha de rosto
+\input{estrut/sumario.tex}       % sumário (índice)
+% Caso o documento não necessite de capa, sumário ou folha de rosto, comente as linhas acima.
+
+% A partir daqui, todas as páginas usam o estilo "corpo": cabeçalho e
+% rodapé completos, com numeração de página (ver cabecalho-rodape.tex).
+\pagestyle{corpo}
+
+% -- Conteúdo do documento ------------------------------------------------------
+% Adicione aqui os arquivos de seção do seu relatório (pasta "secoes/").
+% Os dois arquivos abaixo são EXEMPLOS: substitua-os pelo conteúdo real
+% do seu documento, ou adicione novos \input{} para cada nova seção.
+\input{secoes/exemplo.tex}
+\newpage
+\input{secoes/exemplo-formulario.tex}
+
+\end{document}

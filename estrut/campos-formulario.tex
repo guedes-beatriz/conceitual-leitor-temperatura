@@ -1,0 +1,94 @@
+% ============================================================================
+% campos-formulario.tex
+% ----------------------------------------------------------------------------
+% Define COMANDOS PRONTOS para criar campos de formulário PDF interativos
+% (caixas de texto, checkboxes) dentro do documento, usando o pacote
+% "hyperref" (que fornece \TextField e \CheckBox).
+%
+% Esses campos SÓ FUNCIONAM COMO INTERATIVOS quando o PDF é aberto em um
+% leitor compatível com formulários (ex.: Adobe Acrobat Reader). Em alguns
+% visualizadores simples (como o do navegador), os campos podem aparecer
+% apenas como retângulos vazios, sem interatividade.
+%
+% COMANDOS DISPONÍVEIS PARA USAR NAS SEÇÕES DE CONTEÚDO:
+%   \campotexto{nome}{largura}          -> campo de texto de uma linha
+%   \campolongo{nome}{altura}           -> campo de texto de múltiplas linhas
+%   \caixa{nome}{rótulo}                -> checkbox com texto ao lado
+%   \campotabela[largura]{nome}{altura} -> campo de texto para uso dentro de tabelas
+%   \checktabela{nome}                  -> checkbox para uso dentro de tabelas
+%
+% Exemplo de uso em uma seção de conteúdo:
+%   Nome: \campotexto{nome_completo}{6cm}
+%   \caixa{aceite_termos}{Li e aceito os termos}
+% ============================================================================
+
+% -- Aparência padrão dos campos -----------------------------------------------
+\definecolor{fieldbg}{RGB}{245, 245, 245}   % cor de fundo cinza-clara dos campos
+\newcommand{\tamanhoFonteCampo}{12pt}        % tamanho de fonte dos campos normais
+\newcommand{\tamanhoFonteCampoTabela}{10pt}  % tamanho de fonte dos campos dentro de tabelas
+\newcommand{\ladoCaixa}{12pt}                % tamanho (lado) dos checkboxes
+
+% Necessário para o correto funcionamento do pacote hyperref com campos de
+% formulário; não altere estas duas linhas.
+\def\LayoutTextField#1#2{#2}
+\def\LayoutChoiceField#1#2{#2}
+
+% -- \campotexto{nome}{largura} ------------------------------------------------
+% Cria um campo de texto de uma única linha.
+%   #1 = nome interno do campo (identificador único, sem espaços)
+%   #2 = largura do campo (ex.: 5cm)
+\newcommand{\campotexto}[2]{
+    \rule{0pt}{16pt}  % garante altura mínima de linha para alinhamento visual
+    \TextField[name=#1, width=#2, height=14pt, borderwidth=0.75,
+        bordercolor={0.8 0.8 0.8}, backgroundcolor=fieldbg,
+        charsize=\tamanhoFonteCampo]{}
+}
+
+% -- \campolongo{nome}{altura} -------------------------------------------------
+% Cria um campo de texto de múltiplas linhas (ocupa a largura toda da página).
+%   #1 = nome interno do campo
+%   #2 = altura do campo (ex.: 3cm)
+\newcommand{\campolongo}[2]{
+    \noindent\rule{0pt}{#2}
+    \TextField[name=#1, width=\linewidth, height=#2, multiline=true,
+        borderwidth=0.75, bordercolor={0.8 0.8 0.8}, backgroundcolor=fieldbg,
+        charsize=\tamanhoFonteCampo]{}
+}
+
+% -- \caixa{nome}{rótulo} -------------------------------------------------------
+% Cria um checkbox com um texto/rótulo ao lado.
+%   #1 = nome interno do campo
+%   #2 = texto exibido ao lado do checkbox
+\newcommand{\caixa}[2]{
+    {\fontsize{\tamanhoFonteCampo}{\tamanhoFonteCampo}\selectfont
+    \CheckBox[name=#1, bordercolor={0 0 0},
+        checkboxsymbol=\ding{51},
+        width=\ladoCaixa, height=\ladoCaixa]{ #2}}
+}
+
+% -- \campotabela[largura]{nome}{altura} ---------------------------------------
+% Versão do campo de texto pensada para uso DENTRO DE CÉLULAS DE TABELA.
+% O parâmetro de largura é opcional (padrão: \hsize, ou seja, a largura
+% disponível da célula).
+%   [#1] = largura (opcional, padrão \hsize)
+%   #2   = nome interno do campo
+%   #3   = altura do campo
+\newcommand{\campotabela}[3][\hsize]{
+    \makebox[\hsize][c]{
+        \TextField[name=#2, width=#1, height=#3, multiline=true,
+            borderwidth=0, backgroundcolor=fieldbg,
+            charsize=\tamanhoFonteCampoTabela]{}
+    }
+}
+
+% -- \checktabela{nome} ---------------------------------------------------------
+% Checkbox pensado para uso dentro de células de tabela (sem rótulo ao lado,
+% e sem borda visível).
+%   #1 = nome interno do campo
+\newcommand{\checktabela}[1]{
+    \makebox[\hsize][c]{
+        {\fontsize{\tamanhoFonteCampoTabela}{\tamanhoFonteCampoTabela}\selectfont
+        \CheckBox[name=#1, checkboxsymbol=\ding{51},
+            width=\ladoCaixa, height=\ladoCaixa, borderwidth=0]{}}
+    }
+}

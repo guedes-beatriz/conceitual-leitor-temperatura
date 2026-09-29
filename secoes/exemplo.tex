@@ -1,0 +1,75 @@
+% ====================================================================
+% EXEMPLO.TEX — COMO CRIAR SEÇÕES, SUBSEÇÕES E SUBSUBSEÇÕES
+% ====================================================================
+% Este arquivo é só um EXEMPLO de uso, não é chamado pelo main.tex.
+% Para usar um destes arquivos de verdade no corpo do documento, dê
+% \input{secoes/exemplo.tex} dentro de main.tex (onde hoje está
+% \input{secoes/teste.tex}).
+%
+% Estrutura hierárquica disponível:
+%   \section{...}       -> nível 1 (numerado 1, 2, 3...)
+%   \subsection{...}    -> nível 2 (numerado 1.1, 1.2...)
+%   \subsubsection{...} -> nível 3 (numerado 1.1.1, 1.1.2...)
+% ====================================================================
+
+\section{Nome da Seção}
+
+Texto de abertura da seção. Todo o conteúdo escrito aqui, antes da
+primeira \verb|\subsection|, é considerado parte da introdução desta
+seção.
+
+\subsection{Nome da Subseção}
+
+Texto da subseção. Uma seção pode ter quantas subseções forem
+necessárias, bastando repetir o comando \verb|\subsection{...}|.
+
+\subsubsection{Nome da Subsubseção}
+
+Texto da subsubseção — o menor nível de divisão usado neste modelo.
+Uma subseção pode ter quantas subsubseções forem necessárias.
+
+\subsubsection{Outra Subsubseção}
+
+Basta repetir \verb|\subsubsection{...}| para criar quantas forem
+necessárias dentro da mesma subseção.
+
+\subsection{Outra Subseção}
+
+E o mesmo vale para subseções: repita \verb|\subsection{...}| dentro
+da seção quantas vezes precisar.
+
+% --------------------------------------------------------------------
+% COMO INSERIR UMA IMAGEM
+% --------------------------------------------------------------------
+% O comando \includegraphics (do pacote graphicx, já carregado em
+% includes.tex) insere uma imagem no documento. Aqui usamos o ambiente
+% "figure" para que a imagem fique centralizada e com uma legenda
+% numerada automaticamente (Figura 1, Figura 2, ...).
+%
+%   [h]                  -> pede ao LaTeX para tentar posicionar a
+%                           imagem "aqui mesmo" (here), no ponto do
+%                           texto onde o comando foi escrito.
+%   \centering           -> centraliza a imagem horizontalmente.
+%   width=10cm           -> define a largura da imagem em centímetros
+%                           (ajuste esse valor conforme o tamanho
+%                           desejado; a altura é ajustada automaticamente
+%                           para manter a proporção original da imagem).
+%   \caption{...}        -> texto da legenda, exibido abaixo da imagem.
+%   \label{fig:exemplo}  -> permite referenciar a imagem em outro ponto
+%                           do texto com \ref{fig:exemplo} (ex.: "ver
+%                           Figura~\ref{fig:exemplo}").
+%
+% O caminho da imagem é relativo à raiz do projeto (onde está o
+% main.tex), então "imag/imag-exemplo.png" busca o arquivo dentro da
+% pasta "imag/".
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=4cm]{imag/imag-exemplo.jpg}
+    \caption{Exemplo de imagem inserida no documento.}
+    \label{fig:exemplo}
+\end{figure}
+
+\section{Outra Seção}
+
+Para começar uma nova seção (nível 1), basta usar \verb|\section{...}|
+novamente. Não é necessário fechar nada antes.

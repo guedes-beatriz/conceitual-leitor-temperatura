@@ -1,0 +1,49 @@
+% ============================================================================
+% folha-rosto.tex
+% ----------------------------------------------------------------------------
+% Gera a FOLHA DE ROSTO: a segunda página do documento, com um breve texto
+% de apresentação do relatório e os dados da equipe responsável.
+%
+% Usa dados definidos em edicao.tex (\nomeProjeto, \nomeCliente,
+% \gerenteProjeto, \equipeTecnica) e em config.tex (\entidadeExecutora,
+% \dataEmissaoDocumento).
+%
+% Você normalmente NÃO precisa editar este arquivo, apenas os dados que ele
+% utiliza (em config.tex e edicao.tex).
+% ============================================================================
+
+\thispagestyle{empty}   % folha de rosto não tem cabeçalho/rodapé
+
+\vspace*{2cm}
+
+% -- Texto de apresentação do relatório ---------------------------------------
+\begin{center}
+\begin{minipage}{0.85\textwidth}
+    \setstretch{1.15}
+    \noindent Relatório Técnico Conceitual apresentado como entrega
+    formal do projeto \textbf{\nomeProjeto}, desenvolvido para a
+    empresa \textbf{\nomeCliente}.
+\end{minipage}
+\end{center}
+
+\vfill
+
+% -- Dados da equipe responsável -----------------------------------------------
+\noindent
+\begin{minipage}{\textwidth}
+    \textbf{Entidade Executora:} \entidadeExecutora \\[0.3cm]
+    \textbf{Gerente de Projeto:} \gerenteProjeto \\[0.3cm]
+    \textbf{Equipe Técnica:} \equipeTecnica
+\end{minipage}
+
+\vspace{1.5cm}
+
+% -- Data de emissão --------------------------------------------------------
+\noindent
+\begin{minipage}{\textwidth}
+    \textbf{Data de Emissão:} \dataEmissaoDocumento
+\end{minipage}
+
+\vspace*{1cm}
+
+\clearpage  % garante que o próximo conteúdo (sumário) comece em página nova

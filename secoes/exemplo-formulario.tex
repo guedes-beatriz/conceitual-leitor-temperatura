@@ -1,0 +1,66 @@
+% ====================================================================
+% EXEMPLO-FORMULARIO.TEX — COMO CRIAR CAMPOS, CAMPO LONGO, CAIXAS E TABELA
+% ====================================================================
+% Este arquivo é só um EXEMPLO de uso, não é chamado pelo main.tex.
+% Para usar algo assim de verdade no corpo do documento, dê
+% \input{secoes/exemplo-formulario.tex} dentro de main.tex (onde hoje
+% está \input{secoes/teste.tex}).
+%
+% As macros usadas abaixo (\campotexto, \campolongo, \caixa,
+% \campotabela, \checktabela) são definidas em
+% estrut/campos-formulario.tex — não precisa mexer lá, só usá-las.
+%
+% REGRA OBRIGATÓRIA: todo campo só funciona dentro do ambiente Form,
+% como abaixo. NOMES (1º argumento de cada macro) DEVEM SER ÚNICOS
+% no documento inteiro.
+% ====================================================================
+
+\begin{Form}
+
+\section{Exemplo de Formulário}
+
+% --------------------------------------------------------------
+% 1. Campo de texto simples (uma linha)
+% --------------------------------------------------------------
+Nome do responsável: \campotexto{exemplo_nome}{6cm}
+
+\vspace{0.5cm}
+
+% --------------------------------------------------------------
+% 2. Campo de texto longo (múltiplas linhas)
+% --------------------------------------------------------------
+Observações gerais:
+
+\campolongo{exemplo_observacoes}{3cm}
+
+\vspace{0.5cm}
+
+% --------------------------------------------------------------
+% 3. Caixa de marcação (checkbox) com rótulo
+% --------------------------------------------------------------
+\caixa{exemplo_opcao1}{Opção 1}
+\hspace{1cm}
+\caixa{exemplo_opcao2}{Opção 2}
+\hspace{1cm}
+\caixa{exemplo_opcao3}{Opção 3}
+
+\vspace{0.5cm}
+
+% --------------------------------------------------------------
+% 4. e 5. Campo de texto e checkbox dentro de tabela
+% --------------------------------------------------------------
+% Use coluna "m{...}" (em vez de "p{...}") para os campos ficarem
+% centralizados também na altura da célula.
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{2cm}|}
+    \hline
+    \textbf{Item} & \textbf{Valor} & \textbf{OK?} \\
+    \hline
+    Item 1 & \campotabela{exemplo_tab_item1}{1cm} & \checktabela{exemplo_tab_check1} \\
+    \hline
+    Item 2 & \campotabela{exemplo_tab_item2}{1cm} & \checktabela{exemplo_tab_check2} \\
+    \hline
+\end{tabular}
+\end{center}
+
+\end{Form}
