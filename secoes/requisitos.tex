@@ -25,11 +25,11 @@ O sistema deve permitir que o usuário alterne entre três modos de operação p
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF05] Modo Desligado}
-O sistema deve desativar a coleta do sensor quando o modo Desligado estiver selecionado. \\
+O sistema deve desativar a coleta do sensor e todos os dispositivos de saída, quando o modo Desligado estiver selecionado, informando o estado no display e na interface web. \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF06] Modo Ligado}
-O sistema deve operar, executando a leitura do sensor apenas quando houver ação explícita do usuário na interface web. \\
+O sistema deve manter a leitura do sensor ativa, enviando os dados em tempo real para a interface web, e acionar o buzzer e o ventilador somente mediante autorização do usuário. \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF07] Modo Automático}

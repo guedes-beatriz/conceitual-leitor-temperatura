@@ -1,0 +1,36 @@
+\section{Descrição de Software}
+
+O firmware do ESP32 será desenvolvido em C++ (framework Arduino) e executará, em um único programa, a leitura do sensor, a lógica de alarmes, o controle dos dispositivos de saída e um servidor web assíncrono para interação web.
+
+\subsection{Bibliotecas Utilizadas}
+
+\begin{itemize}
+    \item \textbf{DHT sensor library} e \textbf{Adafruit Unified Sensor}: leitura de temperatura e umidade do sensor DHT22 (ou DHT11);
+    \item \textbf{LiquidCrystal\_I2C}: exibição dos valores no display LCD 16x2 via barramento I²C;
+    \item \textbf{WiFi.h}: conexão do ESP32 à rede local sem fio;
+    \item \textbf{ESPAsyncWebServer.h}: servidor HTTP assíncrono, que atende à interface web sem bloquear a leitura do sensor;
+    \item \textbf{ArduinoJson.h}: serialização dos dados de temperatura, umidade e modo de operação em formato JSON.
+\end{itemize}
+
+\subsection{Modos de Operação}
+
+\begin{itemize}
+    \item \textbf{Desligado:} a leitura do sensor é suspensa e todos os dispositivos de saída (LEDs, buzzer e ventilador) permanecem desativados. O display exibe apenas a mensagem de sistema desligado, e a interface web informa que os sensores estão desligados;
+    \item \textbf{Ligado:} o sensor permanece ativo e envia as leituras em tempo real para a interface web. O display e os LEDs indicam o estado do sistema normalmente, mas o acionamento do buzzer e do ventilador só ocorre mediante autorização do usuário pela interface;
+    \item \textbf{Automático:} o sensor permanece ativo continuamente e o sistema atua de forma autônoma, acionando LEDs, buzzer e ventilador conforme os limites configurados, sem necessidade de intervenção do usuário.
+\end{itemize}
+
+\subsection{Interface Web}
+
+A interface web é uma página desenvolvida em HTML, com estilização em CSS, armazenada no ESP32 e servida por ele à rede local. O usuário a acessa pelo navegador de qualquer dispositivo, sem precisar instalar nenhum aplicativo.
+
+A página oferece ao usuário:
+
+\begin{itemize}
+    \item \textbf{Seleção do modo de operação:} três botões interativos, um para cada modo (Ligado, Automático e Desligado), que permitem alterar o comportamento do sistema a qualquer momento;
+    \item \textbf{Monitoramento em tempo real:} exibição dos valores de temperatura e umidade, atualizados continuamente sem necessidade de recarregar a página;
+    \item \textbf{Indicação do estado do sistema:} mensagens que informam a situação atual, como a atualização contínua das leituras no modo Automático ou o aviso de sensores desligados no modo Desligado;
+    \item \textbf{Controle das ações no modo Ligado:} um comando para que o usuário autorize o acionamento do buzzer e do ventilador.
+\end{itemize}
+
+A atualização das informações ocorre de forma periódica: a página consulta o ESP32 em intervalos curtos e atualiza a tela com as leituras mais recentes, mantendo o tempo de resposta abaixo do limite definido no requisito [NF01]. Quando o usuário escolhe um modo, o comando é enviado ao ESP32, que o aplica imediatamente e atualiza os LEDs e o display físico para refletir a mudança. Os dados trocados entre a página e o ESP32 são formatados em JSON.
