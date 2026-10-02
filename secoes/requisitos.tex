@@ -7,81 +7,68 @@ O sistema foi concebido para fornecer tanto interação local quanto remota. Loc
 A listagem a seguir documenta as necessidades do sistema, divididas em Requisitos Funcionais (que descrevem as funcionalidades e ações que o sistema deve realizar) e Requisitos Não-Funcionais (que definem as restrições, o desempenho e os critérios de qualidade esperados para a arquitetura).
 
 \subsection{Requisitos Funcionais}
-
 \subsubsection{[RF01] Medição de Temperatura}
 O sistema deve ser capaz de coletar os dados de temperatura do ambiente em tempo real através de um sensor. \\
+\textbf{Área:} Eletrônica e Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF02] Medição de Umidade}
 O sistema deve ser capaz de coletar os dados de umidade relativa do ar em tempo real através de um sensor dedicado. \\
+\textbf{Área:} Eletrônica e Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF03] Exibição em Tempo Real via Web}
 O sistema deve disponibilizar as leituras de temperatura e umidade em uma interface web com atualização contínua. \\
+\textbf{Área:} Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF04] Alternância entre Modos de Operação}
 O sistema deve permitir que o usuário alterne entre três modos de operação pela interface web. \\
+\textbf{Área:} Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF05] Modo Desligado}
 O sistema deve desativar a coleta do sensor e todos os dispositivos de saída, quando o modo Desligado estiver selecionado, informando o estado no display e na interface web. \\
+\textbf{Área:} Eletrônica e Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF06] Modo Ligado}
 O sistema deve manter a leitura do sensor ativa, enviando os dados em tempo real para a interface web, e acionar o buzzer e o ventilador somente mediante autorização do usuário. \\
+\textbf{Área:} Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF07] Modo Automático}
 O sistema deve realizar a leitura autônoma dos dados sem precisar de uma ação manual do usuário. \\
+\textbf{Área:} Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF08] Indicação Visual por LEDs no Hardware}
 O circuito físico deve conter LEDs que reflitam o modo de operação ativo. \\
+\textbf{Área:} Eletrônica \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[RF09] Alertas e Notificações}
 O sistema deve alertar visualmente na interface e disparar notificação quando temperatura ou umidade ultrapassarem limites configurados. \\
+\textbf{Área:} Software \\
 \textbf{Prioridade:} Desejável
 
 \subsubsection{[RF10] Comunicação sem Fio (Wi-Fi)}
 A integração entre o ESP32 e a interface web deve ocorrer por meio de rede local sem fio. \\
+\textbf{Área:} Software \\
 \textbf{Prioridade:} Essencial
-
-\subsubsection{[RF11] Exibição em Display}
-O sistema deve conter um display físico no hardware capaz de exibir localmente a temperatura e a umidade medidas em tempo real. \\
-\textbf{Prioridade:} Essencial
-
-\subsubsection{[RF12] Coletar dados}
-O sistema deve coletar os dados de temperatura através de um sensor. \\
-\textbf{Prioridade:} Essencial
-
-\subsubsection{[RF13] Exibir informações}
-O sistema deve apresentar a temperatura no display. \\
-\textbf{Prioridade:} Essencial
-
-\subsubsection{[RF14] Acionamento do Ventilador}
-O sistema deve acionar o ventilador a partir de uma temperatura elevada. \\
-\textbf{Prioridade:} Desejável
 
 \subsection{Requisitos Não-Funcionais}
-
 \subsubsection{[NF01] Tempo de Resposta da Interface}
 O sistema deve garantir um tempo de resposta inferior a 2 segundos para a atualização dos dados na interface web após a coleta. \\
+\textbf{Área:} Software \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[NF02] Precisão na medição de temperatura}
 O sensor utilizado deve possuir uma margem de erro baixa para garantir a confiabilidade no monitoramento da temperatura do ambiente. \\
+\textbf{Área:} Eletrônica \\
 \textbf{Prioridade:} Essencial
 
 \subsubsection{[NF03] Precisão na medição de umidade}
 O sensor utilizado deve apresentar margem de erro aceitável para garantir a fidelidade dos dados de umidade. \\
-\textbf{Prioridade:} Essencial
-
-\subsubsection{[NF04] Ter precisão}
-O sistema realizará as medições de temperatura adequada ao objetivo do projeto. \\
-\textbf{Prioridade:} Essencial
-
-\subsubsection{[NF05] Consumir pouca energia}
-O sistema deve consumir pouca energia. \\
+\textbf{Área:} Eletrônica \\
 \textbf{Prioridade:} Essencial
