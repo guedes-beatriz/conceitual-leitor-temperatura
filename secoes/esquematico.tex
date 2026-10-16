@@ -1,0 +1,16 @@
+\subsection{Esquemático Eletrônico}
+
+O esquemático eletrônico é uma representação de como o projeto é desenvolvido. 
+Esse diagrama foi elaborado para medir a temperatura e a umidade relativa do ar, 
+utilizando um microcontrolador ESP32, um sensor DHT11, três resistores de 
+300~$\Omega$, um resistor de 10~k$\Omega$ e três LEDs nas cores verde, 
+amarelo e azul.
+As portas utilizadas na ESP32 são: D4 para o sensor DHT11, GPIO 18 para o 
+buzzer e GPIOs 33, 32 e 27 para os LEDs.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{imag/esquematico.png}
+    \caption{Fluxograma de funcionamento do software do sistema.}
+    \label{fig:esquematico_eletrônica}
+\end{figure}
