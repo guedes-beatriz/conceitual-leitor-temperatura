@@ -1,3 +1,17 @@
+\subsection{Diagrama de blocos}
+O diagrama de blocos da Figura \ref{fig:diagrama_blocos} ilustra a arquitetura de hardware do sistema, estruturada em torno dos seguintes elementos:
+
+\begin{itemize}
+    \item \textbf{Processamento Central:} O \textbf{ESP32} é o núcleo do projeto, responsável por processar os dados recebidos, compará-los com os limites definidos e controlar os periféricos.
+    
+    \item \textbf{Entrada de Dados:} O \textbf{Sensor DHT11} realiza a leitura da temperatura e umidade, enviando essas informações para o microcontrolador.
+    
+    \item \textbf{Saídas Visuais:} Três LEDs são acionados pelo ESP32 para indicar o modo de operação do sistema: Verde (Ligado), Amarelo (Desligado) e Azul (Automático).
+    
+    \item \textbf{Alarme Sonoro:} Um \textbf{Buzzer} compõe o sistema de alerta sonoro, atuando como saída para avisos.
+    
+    \item \textbf{Alimentação:} A energia do circuito é fornecida por uma fonte de alimentação, que ajusta a tensão de entrada (via USB ou 12V) para os 5V operacionais necessários.
+\end{itemize}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{imag/Diagrama.png}
