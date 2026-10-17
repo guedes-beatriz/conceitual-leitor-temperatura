@@ -15,7 +15,7 @@ O firmware do ESP32 será desenvolvido em C++ (framework Arduino) e executará, 
 
 \begin{itemize}
     \item \textbf{Desligado:} a leitura do sensor é suspensa e todos os dispositivos de saída (LEDs e buzzer) permanecem desativados. A interface web informa que os sensores estão desligados;
-    \item \textbf{Ligado:} o sensor permanece ativo e envia as leituras em tempo real para a interface web. Os LEDs indicam o estado do sistema normalmente, mas o acionamento do buzzer só ocorre mediante autorização do usuário pela interface;
+    \item \textbf{Ligado} o sensor permanece ativo e envia as leituras em tempo real para a interface web. Os LEDs indicam o estado do sistema normalmente, mas o acionamento do buzzer só ocorre quando a temperatura ultrapassa o limite;
     \item \textbf{Automático:} o sensor permanece ativo continuamente e o sistema atua de forma autônoma, acionando LEDs e buzzer conforme os limites configurados, sem necessidade de intervenção do usuário.
 \end{itemize}
 
